@@ -205,22 +205,16 @@ function create(){
     zone_right.on('pointerup', releaseRight, this);
     zone_right.on('pointerout', releaseRight, this);
     
-    let debug= this.add.graphics({x: 0, y: 0});
-    debug.fillStyle('0x000000', 0.5);
-    debug.fillRect(0,0,0.45 * 800,650);
-    console.log(debug)
     
 }
 
 const holdLeft=()=>{
     if(over)return;
-    console.log('left')
     gameState.is_holding.left=true;
     gameState.is_holding.direction= 'left'
 }
 const holdRight=()=>{
     if(over)return;
-    console.log('right')
     gameState.is_holding.right=true;
     gameState.is_holding.direction= 'right'
 }
