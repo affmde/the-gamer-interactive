@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const fpModel = require('./Modules/foodPaketiHighscores')
 const cors = require('cors');
 const { json } = require('body-parser');
+const path = require('path');
 require('dotenv').config()
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, ()=>{
@@ -17,6 +18,13 @@ app.use(express.json({
 }));
 app.use(cors());
 
+const DIST_DIR = path.join(__dirname, '/client');
+const HTML_FILE = path.join(DIST_DIR, 'index.html');
+
+app.use(express.static(DIST_DIR));
+app.get('*', (req, res) => {
+    res.sendFile(HTML_FILE);
+  });
 
 //routes
 app.get('/fdHighscores', async (req, res)=>{
