@@ -14,6 +14,11 @@ function preload(){
 }
 
 const gameState = {};
+gameState.is_holding={
+    left: false,
+    right: false,
+    direction: false
+}
 
 function create(){
 
@@ -180,7 +185,62 @@ function create(){
         loop: true,
     })
 
+    //Mobile Controllers
+
+    const zone_left = this.add.zone(0,0,0.45 *800,600);
+    zone_left.setOrigin(0,0);
+    zone_left.setDepth(1);
+
+    const zone_right = this.add.zone(800,0,0.45 *800,600);
+    zone_right.setOrigin(1,0);
+    zone_right.setDepth(1);
     
+    zone_left.setInteractive();
+    zone_left.on('pointerdown', holdLeft, this)
+    zone_left.on('pointerup', releaseLeft, this )
+    zone_left.on('pointerout', releaseLeft, this )
+
+    zone_right.setInteractive();
+    zone_right.on('pointerdown',holdRight, this);
+    zone_right.on('pointerup', releaseRight, this);
+    zone_right.on('pointerout', releaseRight, this);
+    
+    let debug= this.add.graphics({x: 0, y: 0});
+    debug.fillStyle('0x000000', 0.5);
+    debug.fillRect(0,0,0.45 * 800,650);
+    console.log(debug)
+    
+}
+
+const holdLeft=()=>{
+    if(over)return;
+    console.log('left')
+    gameState.is_holding.left=true;
+    gameState.is_holding.direction= 'left'
+}
+const holdRight=()=>{
+    if(over)return;
+    console.log('right')
+    gameState.is_holding.right=true;
+    gameState.is_holding.direction= 'right'
+}
+const releaseLeft = () => {
+    gameState.is_holding.left=false;
+
+    if(gameState.is_holding.right){
+        gameState.is_holding.direction='right'
+    }else{
+        gameState.is_holding.direction=false;
+    }
+}
+const releaseRight = () => {
+    gameState.is_holding.right=false;
+
+    if(gameState.is_holding.left){
+        gameState.is_holding.direction='left'
+    }else{
+        gameState.is_holding.direction=false;
+    }
 }
 
 function destroyFruit(basket, fruit){
@@ -235,25 +295,26 @@ function update(){
         null
     }
 
-    if (this.input.activePointer.isDown) {
-        if(this.input.activePointer.worldX < 400){
-            if(gameState.stats.over){
-                gameState.basket.x += 0;
-            }else if(gameState.basket.x>0){
-                gameState.basket.x -= 5;
-            }else{
-                gameState.basket.x =0
-            }
-        }else{
-            if(gameState.stats.over){
-                gameState.basket.x += 0;
-            }else if(gameState.basket.x<750){
-                gameState.basket.x += 5;
-            }else{
-                gameState.basket.x = 750;
-            }
-        }
 
+    //Mobile move player
+    if(gameState.is_holding.direction==='left'){
+        if(gameState.stats.over){
+            gameState.basket.x += 0;
+        }else if(gameState.basket.x>0){
+            gameState.basket.x -= 5;
+        }else{
+            gameState.basket.x =0
+        }
+    }else if(gameState.is_holding.direction==='right'){
+        if(gameState.stats.over){
+            gameState.basket.x += 0;
+        }else if(gameState.basket.x<750){
+            gameState.basket.x += 5;
+        }else{
+            gameState.basket.x = 750;
+        }
+    }else{
+        return
     }
     
     gameState.timeText.setText(`Time: ${gameState.stats.time}`)
