@@ -1,0 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/89a9d56564505.560c3757ab074.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+#game, #jumpperGame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    margin-bottom: 20vh;
+    font-size: 4rem;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.ready-div h3{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: wheat;
+}
+
+.play-btn{
+    padding: 20px 40px;
+    border-radius: 5px;
+    background-color: blueviolet;
+    border: 1px solid darkmagenta;
+    margin-top: 5vh;
+    cursor: pointer;
+}
+.play-btn:hover, .play-btn:active{
+    border-color: blueviolet;
+    background-color: darkmagenta;
+}
+.play-link{
+    color: rgba(255, 255, 255, 0.744);
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn{
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: none ;
+    cursor: pointer;
+    background-color: rgba(95, 161, 95, 0.9);
+    border: 2px solid darkgreen;
+}
+.btn:hover, .btn:active{
+    background-color: green;
+    border-color:rgba(95, 161, 95, 0.9);
+}
+
+.highscores-btn{
+    padding: 10px 20px;
+    background-color: rgb(100, 100, 11);
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.game-presenter-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container{
+    max-height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.table{
+    background-color: rgba(255, 255, 255, 0.692);
+    width: 80vw;
+    overflow-y: scroll;
+}
+.text{
+    font-size: 2rem;
+    margin: 3vh 0;
+
+}
+.tableRow:hover{
+    background-color: rgba(208, 208, 40, 0.641);
+}
+
+.HighScores{
+    margin-bottom: 8vh;
+    font-size: 4rem;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+#save-btn{
+    background-color: rgba(50, 50, 201, 0.721);
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+#save-btn:active, #save-btn:hover{
+    background-color: rgba(30, 30, 86, 0.889);
+    transform: scale(1.05);
+    color: white;
+    font-weight: bolder;
+}
+#username{
+    padding: 5px 15px;
+}
+
+#messageDiv{
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    background-color: green;
+    color: white;
+    padding: 20px 20px;
+    display: none;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 768px){
+    .title, .HighScores{
+        font-size: 1.5rem;
+    }
+    .text{
+        font-size: 1rem;
+    }
+    .ready-div h3{
+        font-size: 1.5rem;
+    }
+    .btn{
+        margin: 5px;
+        padding: 5px 10px;
+    }
+    .play-btn{
+        padding: 5px 10px;
+    }
+    .highscores-btn{
+        padding: 5px 10px;
+    }
+    .play-link{
+        color: rgba(255, 255, 255, 0.744);
+        font-size: 1rem;
+        font-weight: 200;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) and (orientation: landscape){
+    .saveScore-div{
+        position: absolute;
+        bottom: 5vh;
+        z-index: 99;
+    }
+    #game{
+        height: 70vh;
+    }
+}
+
+
+@media only screen and (min-width: 1200px){
+    .mobile{
+        display: none;
+    }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The bugger</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div id="game">
+            <div></div>
+        </div>
+        <div class="btns">
+            <button class="btn home"><a href="index.html">Home</a></button>
+            <button class="btn restart"><a href="game.html">Restart</a></button>
+        </div>
+        <div class="saveScore-div" id="saveDiv">
+            <input id="username" type="text" name="username" placeholder="Your Name" value="">
+            <button id="save-btn" name="password">Save</button>
+        </div>
+        <div id="messageDiv">
+            <p>Saved successfully!</p>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
