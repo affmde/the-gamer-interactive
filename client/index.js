@@ -19,17 +19,16 @@ gameState.is_holding={
     right: false,
     direction: false
 }
+gameState.stats={
+    score: 0,
+    time: 0,
+    over: false,
+    apples: 0,
+    oranges: 0,
+    bananas: 0
+}
 
 function create(){
-
-    gameState.stats={
-        score: 0,
-        time: 0,
-        over: false,
-        apples: 0,
-        oranges: 0,
-        bananas: 0
-    }
 
     this.add.image(0,0, 'bg').setOrigin(0,0)
     gameState.basket= this.physics.add.sprite(200, 480, 'basket').setOrigin(0, 0).setScale(1);
@@ -208,7 +207,7 @@ function create(){
     
 }
 
-const holdLeft=()=>{
+function holdLeft(){
     if(over)return;
     gameState.is_holding.left=true;
     gameState.is_holding.direction= 'left'
@@ -270,7 +269,7 @@ function update(){
     gameState.bananaCountText.setText(`x${gameState.stats.bananas}`)
 
     if(gameState.cursors.left.isDown){
-        if(gameState.stats.over){
+        if(over){
             gameState.basket.x += 0;
         }else if(gameState.basket.x>0){
             gameState.basket.x -= 5;
@@ -278,7 +277,7 @@ function update(){
             gameState.basket.x =0
         }
     }else if(gameState.cursors.right.isDown){
-        if(gameState.stats.over){
+        if(over){
             gameState.basket.x += 0;
         }else if(gameState.basket.x<750){
             gameState.basket.x += 5;
@@ -292,7 +291,7 @@ function update(){
 
     //Mobile move player
     if(gameState.is_holding.direction==='left'){
-        if(gameState.stats.over){
+        if(over){
             gameState.basket.x += 0;
         }else if(gameState.basket.x>0){
             gameState.basket.x -= 5;
@@ -300,20 +299,18 @@ function update(){
             gameState.basket.x =0
         }
     }else if(gameState.is_holding.direction==='right'){
-        if(gameState.stats.over){
+        if(over){
             gameState.basket.x += 0;
         }else if(gameState.basket.x<750){
             gameState.basket.x += 5;
         }else{
             gameState.basket.x = 750;
         }
-    }else{
-        return
     }
     
     gameState.timeText.setText(`Time: ${gameState.stats.time}`)
-
-    if(gameState.stats.over===true){
+    console.log(gameState.stats.time)
+    if(over===true){
         clearInterval(timer);
     }
 }
