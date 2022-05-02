@@ -187,11 +187,11 @@ function create(){
 
     //Mobile Controllers
 
-    const zone_left = this.add.zone(0,0,0.45 *800,600);
+    const zone_left = this.add.zone(0,0,0.45 *800,650);
     zone_left.setOrigin(0,0);
     zone_left.setDepth(1);
 
-    const zone_right = this.add.zone(800,0,0.45 *800,600);
+    const zone_right = this.add.zone(800,0,0.45 *800,650);
     zone_right.setOrigin(1,0);
     zone_right.setDepth(1);
     
