@@ -2,7 +2,7 @@ const scores= [];
 const headers=['Position', 'Player', 'Score', 'Time']
 
 const getHighScores = async () => {
-    const highscores = await fetch('http://localhost:3001/fdHighscores')
+    const highscores = await fetch('/fdHighscores')
     const response = await highscores.json()
     scores.push(response)
 }

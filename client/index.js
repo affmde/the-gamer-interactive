@@ -305,7 +305,7 @@ const saveScoreFP =async ()=>{
     const score= parseInt(localStorage.getItem('fpScore'));
     const time= parseInt(localStorage.getItem('fpTime'));
     console.log(typeof(score))
-    const response = await fetch('http://localhost:3001/postFoodPaketiScore', {
+    const response = await fetch('/postFoodPaketiScore', {
         method: 'POST',
         headers:{
             headers: {
