@@ -304,7 +304,7 @@ const messageDiv = document.getElementById('messageDiv');
 const saveScoreFP =async ()=>{
     const score= parseInt(localStorage.getItem('fpScore'));
     const time= parseInt(localStorage.getItem('fpTime'));
-    console.log(typeof(score))
+    
     const response = await fetch('/postFoodPaketiScore', {
         method: 'POST',
         headers:{
