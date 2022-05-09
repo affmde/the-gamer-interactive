@@ -11,10 +11,12 @@ class Level3 extends Phaser.Scene{
         this.load.image('smallPlatform', 'assets/platform-small.png');
         this.load.image('heart', 'assets/red-heart.png');
         this.load.image('ring', 'assets/ring.png');
-        this.load.image('box', 'assets/box.png');
-        this.load.image('ArrowsController', 'assets/controls.png')
-        this.load.image('ControlA', 'assets/ControlA.png');
-        this.load.image('squareFake', 'assets/squareFakeControl.png')
+        this.load.image('box', 'assets/box.png'); 
+        if(device!=='desktop'){
+            this.load.image('ArrowsController', 'assets/controls.png')
+            this.load.image('ControlA', 'assets/ControlA.png');
+            this.load.image('squareFake', 'assets/squareFakeControl.png')
+        }
     }
 
     create(){
@@ -37,12 +39,14 @@ class Level3 extends Phaser.Scene{
         this.player.setOffset(15, 28);
         this.platforms= this.physics.add.staticGroup();
         this.rings= this.physics.add.staticGroup();
-        arrows = this.add.image(120, h*0.8, 'ArrowsController').setAlpha(0.7).setScrollFactor(0).setInteractive().setScale(1.5);
-        controlA = this.add.image(w*0.81,h*0.8, 'ControlA').setAlpha(0.5).setScale(0.8).setScrollFactor(0).setInteractive();
-        squareLeft = this.add.image(50, h*0.8, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
-        squareRight = this.add.image(190, h*0.8, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
-        squareUp = this.add.image(120, h*0.8-70, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
-        squareDown = this.add.image(120, h*0.8+70, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
+        if(device !== 'desktop'){
+            arrows = this.add.image(120, h*0.8, 'ArrowsController').setAlpha(0.7).setScrollFactor(0).setInteractive().setScale(1.5);
+            controlA = this.add.image(w*0.81,h*0.8, 'ControlA').setAlpha(0.5).setScale(0.8).setScrollFactor(0).setInteractive();
+            squareLeft = this.add.image(50, h*0.8, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
+            squareRight = this.add.image(190, h*0.8, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
+            squareUp = this.add.image(120, h*0.8-70, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
+            squareDown = this.add.image(120, h*0.8+70, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
+        }
         this.smallPlatforms= this.physics.add.staticGroup();
         this.boxRings= this.physics.add.group(({
             key: 'ring',
@@ -143,79 +147,83 @@ class Level3 extends Phaser.Scene{
     update(){
         this.physics.world.collide(this.player, this.platforms);
         this.checkAnimation()
-        /*if(this.cursors.left.isDown){
-            this.player.setVelocityX(-160)
-        }else if(this.cursors.right.isDown){
-            this.player.setVelocityX(160)
+        if(device === 'desktop'){
+            if(this.cursors.left.isDown){
+                this.player.setVelocityX(-160)
+            }else if(this.cursors.right.isDown){
+                this.player.setVelocityX(160)
+            }else{
+                this.player.setVelocityX(0);
+            }
+            
+            if(this.cursors.up.isDown && this.player.body.touching.down){
+                this.player.setVelocityY(-380)
+            }else if(this.cursors.down.isDown){
+                this.player.setVelocityY(200)
+            }
         }else{
-            this.player.setVelocityX(0);
+            //Mobile Controls
+        squareLeft.on('pointerdown', ()=>{
+            this.player.setVelocityX(-160)
+            squareLeft.setAlpha(0.03)
+            this.player.flipX=true;
+            animation='walk'
+            })
+            squareLeft.on('pointerup', ()=>{
+                this.player.setVelocityX(0);
+                squareLeft.setAlpha(0.01)
+                animation='idle'
+            })
+            squareLeft.on('pointerout', ()=>{
+                this.player.setVelocityX(0);
+                squareLeft.setAlpha(0.01)
+                animation='idle'
+            })
+            squareRight.on('pointerdown', ()=>{
+                this.player.setVelocityX(160)
+                squareRight.setAlpha(0.03)
+                animation='walk'
+                this.player.flipX=false
+            })
+            squareRight.on('pointerout', ()=>{
+                this.player.setVelocityX(0)
+                squareRight.setAlpha(0.01)
+                animation='idle'
+            })
+            squareRight.on('pointerup', ()=>{
+                this.player.setVelocityX(0)
+                squareRight.setAlpha(0.01)
+                animation='idle'
+            })
+            squareDown.on('pointerdown', ()=>{
+                this.player.setVelocityY(h*0.63)
+                squareDown.setAlpha(0.03)
+            })
+            squareDown.on('pointerout', ()=>{
+                squareDown.setAlpha(0.01)
+            })
+            squareDown.on('pointerup', ()=>{
+                squareDown.setAlpha(0.01)
+            })
+            controlA.on('pointerdown', ()=>{
+                if(this.player.body.touching.down){
+                    this.player.setVelocityY(-380)
+                }
+                controlA.setScale(0.6)
+            })
+            controlA.on('pointerup', ()=>{
+                controlA.setScale(0.8)
+            })
+            controlA.on('pointerout', ()=>{
+                controlA.setScale(0.8)
+            })
         }
         
-        if(this.cursors.up.isDown && this.player.body.touching.down){
-            this.player.setVelocityY(-380)
-        }else if(this.cursors.down.isDown){
-            this.player.setVelocityY(200)
-        }*/
 
         if(this.player.y>h-50){
             this.checkGameOver()
         }
 
-       //Mobile Controls
-       squareLeft.on('pointerdown', ()=>{
-        this.player.setVelocityX(-160)
-        squareLeft.setAlpha(0.03)
-        this.player.flipX=true;
-        animation='walk'
-        })
-        squareLeft.on('pointerup', ()=>{
-            this.player.setVelocityX(0);
-            squareLeft.setAlpha(0.01)
-            animation='idle'
-        })
-        squareLeft.on('pointerout', ()=>{
-            this.player.setVelocityX(0);
-            squareLeft.setAlpha(0.01)
-            animation='idle'
-        })
-        squareRight.on('pointerdown', ()=>{
-            this.player.setVelocityX(160)
-            squareRight.setAlpha(0.03)
-            animation='walk'
-            this.player.flipX=false
-        })
-        squareRight.on('pointerout', ()=>{
-            this.player.setVelocityX(0)
-            squareRight.setAlpha(0.01)
-            animation='idle'
-        })
-        squareRight.on('pointerup', ()=>{
-            this.player.setVelocityX(0)
-            squareRight.setAlpha(0.01)
-            animation='idle'
-        })
-        squareDown.on('pointerdown', ()=>{
-            this.player.setVelocityY(h*0.63)
-            squareDown.setAlpha(0.03)
-        })
-        squareDown.on('pointerout', ()=>{
-            squareDown.setAlpha(0.01)
-        })
-        squareDown.on('pointerup', ()=>{
-            squareDown.setAlpha(0.01)
-        })
-        controlA.on('pointerdown', ()=>{
-            if(this.player.body.touching.down){
-                this.player.setVelocityY(-380)
-            }
-            controlA.setScale(0.6)
-        })
-        controlA.on('pointerup', ()=>{
-            controlA.setScale(0.8)
-        })
-        controlA.on('pointerout', ()=>{
-            controlA.setScale(0.8)
-        })
 
         //Update texts
         this.scoreText.setText(`Your score: ${gameStats.score}`)

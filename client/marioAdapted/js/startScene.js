@@ -1,5 +1,6 @@
-const h= window.innerHeight;
-const w= window.innerWidth;
+let h= window.innerHeight;
+let w= window.innerWidth;
+let device;
 class StartScene extends Phaser.Scene{
     constructor(){
         super({key: 'StartScene'})
@@ -17,10 +18,22 @@ class StartScene extends Phaser.Scene{
             this.scene.stop();
             this.scene.start('GameScene')
         })
+        device=this.deviceType();
     }
 
     update(){
 
     }
+
+    deviceType = () => {
+        const ua = navigator.userAgent;
+        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+            return "tablet";
+        }
+        else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            return "mobile";
+        }
+        return "desktop";
+    };
 }
 

@@ -20,6 +20,11 @@ class EndGame extends Phaser.Scene{
             gameStats.score=0;
             gameStats.level=1
         })
+        this.homeText= this.add.text(w/2, h/2+h*0.3, 'Home', {fontSize: 32}).setOrigin(0.5);
+        this.homeText.setInteractive()
+        this.homeText.on('pointerdown', ()=>{
+            window.location.href = "../index.html"
+        })
     }
 
     update(){
