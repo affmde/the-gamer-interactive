@@ -20,6 +20,7 @@ class Level3 extends Phaser.Scene{
     }
 
     create(){
+        gameStats.level=3
         this.background= this.add.rectangle(0,0, 2500,h, 0x000000);
         this.background.setOrigin(0)
         this.physics.world.setBounds(0,0,2500, h)
@@ -141,7 +142,8 @@ class Level3 extends Phaser.Scene{
 
         //Texts
         this.scoreText= this.add.text(20,40, `Score: ${gameStats.score}`, {fontSize: 20});
-        this.scoreText.setScrollFactor(0)
+        this.scoreText.setScrollFactor(0);
+        this.levelText= this.add.text(w-100, 10, `Lvl: ${gameStats.level}`, {fontSize: 20}).setScrollFactor(0)
     }
 
     update(){

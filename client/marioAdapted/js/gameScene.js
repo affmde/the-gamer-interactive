@@ -108,6 +108,7 @@ class GameScene extends Phaser.Scene{
         //Texts
         this.scoreText= this.add.text(20,40, `Score: ${gameStats.score}`, {fontSize: 20});
         this.scoreText.setScrollFactor(0)
+        this.levelText= this.add.text(w-100, 10, `Lvl: ${gameStats.level}`, {fontSize: 20}).setScrollFactor(0)
     }
 
     update(){

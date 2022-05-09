@@ -23,6 +23,7 @@ class Level5 extends Phaser.Scene{
     }
 
     create(){
+        gameStats.level=5
         this.background= this.add.rectangle(0,0, 3500,h, 0xb9baff);
         this.background.setOrigin(0)
         this.physics.world.setBounds(0,0,3500, h)
@@ -150,7 +151,7 @@ class Level5 extends Phaser.Scene{
         console.log(gameStats.score)
         this.scoreText= this.add.text(20,40, `Score: ${gameStats.score}`, {fontSize: 20});
         this.scoreText.setScrollFactor(0)
-        
+        this.levelText= this.add.text(w-100, 10, `Lvl: ${gameStats.level}`, {fontSize: 20}).setScrollFactor(0)
     }
 
     update(){
@@ -297,7 +298,7 @@ class Level5 extends Phaser.Scene{
 const level5Platforms= [
     {
         x: 500,
-        y: h*0.3
+        y: h*0.38
     },
     {
         x:900,
