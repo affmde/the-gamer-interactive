@@ -148,7 +148,6 @@ a{
     border-radius: 5px;
 }
 
-
 @media only screen and (max-width: 768px){
     .title, .HighScores{
         font-size: 1.5rem;
@@ -193,4 +192,5 @@ a{
     .mobile{
         display: none;
     }
+    
 }

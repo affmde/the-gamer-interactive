@@ -309,10 +309,10 @@ function update(){
     }
     
     gameState.timeText.setText(`Time: ${gameState.stats.time}`)
-    console.log(gameState.stats.time)
     if(over===true){
         clearInterval(timer);
     }
+
 }
 
 let timer= setInterval(()=>{
@@ -380,7 +380,5 @@ const saveScoreFP =async ()=>{
     }, 2000)
 }
 
-
 saveBtn.addEventListener('click', saveScoreFP)
-
 
