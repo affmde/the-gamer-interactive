@@ -159,7 +159,7 @@ class Level3 extends Phaser.Scene{
             }
             
             if(this.cursors.up.isDown && this.player.body.touching.down){
-                this.player.setVelocityY(-380)
+                this.player.setVelocityY(-h*0.63)
             }else if(this.cursors.down.isDown){
                 this.player.setVelocityY(200)
             }
@@ -209,7 +209,7 @@ class Level3 extends Phaser.Scene{
             })
             controlA.on('pointerdown', ()=>{
                 if(this.player.body.touching.down){
-                    this.player.setVelocityY(-380)
+                    this.player.setVelocityY(-h*0.63)
                 }
                 controlA.setScale(0.6)
             })
@@ -311,30 +311,30 @@ class Level3 extends Phaser.Scene{
 const levelPlatforms= [
     {
         x: 500,
-        y: 300+Math.random(200)
+        y: h*0.4
     },
     
     {
         x:1900,
-        y: 300+ Math.random()*200
+        y: h*0.5
     },
 ]
 
 const smallPlatforms = [
     {
         x: 850,
-        y: 300
+        y: h*0.5
     },
     {
         x:1100,
-        y: 200
+        y: h*0.34
     },
     {
         x: 1400,
-        y:500
+        y:h*0.82
     },
     {
         x: 1620,
-        y: 300
+        y: h*0.5
     }
 ]

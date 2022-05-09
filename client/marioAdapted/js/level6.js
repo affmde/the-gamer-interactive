@@ -316,9 +316,13 @@ class Level6 extends Phaser.Scene{
             bullet.setVelocityX(-200)
             bullet.body.allowGravity=false
             this.physics.add.collider(bullet, this.player, (bul, player)=>{
-                this.checkGameOver()
+                if(player.body.touching.down){
+                    return
+                }else{
+                    this.checkGameOver()
+                }
             })
-        },5000)
+        },6000)
     }
 }
 

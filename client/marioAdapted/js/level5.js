@@ -55,11 +55,6 @@ class Level5 extends Phaser.Scene{
             squareDown = this.add.image(120, h*0.8+70, 'squareFake').setScale(1).setInteractive().setScrollFactor(0).setAlpha(0.01);
         }
         
-        //Create Live Hearts
-        for(let i = 0; i < gameStats.lives; i++){
-            const heart = this.add.image(20 + i*30, 20, 'heart')
-            heart.setScrollFactor(0);
-        }
         //create platforms
         level5Platforms.forEach(platform=>{
             this.platforms.create(platform.x, platform.y, 'platform');
@@ -242,6 +237,9 @@ class Level5 extends Phaser.Scene{
 
         //Update texts
         this.scoreText.setText(`Your score: ${gameStats.score}`)
+
+        //Update player lives
+        this.playerLives();
     }//end of Update method
 
     checkGameOver(){
@@ -259,6 +257,13 @@ class Level5 extends Phaser.Scene{
             this.player.anims.play('golem_idle', true)
         }else if(animation==='walk'){
             this.player.anims.play('golem_walk', true)
+        }
+    }
+
+    playerLives(){
+        for(let i = 0; i < gameStats.lives; i++){
+            const heart = this.add.image(20 + i*30, 20, 'heart')
+            heart.setScrollFactor(0)
         }
     }
 

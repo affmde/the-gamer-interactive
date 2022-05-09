@@ -124,7 +124,7 @@ class GameScene extends Phaser.Scene{
             }
             
             if(this.cursors.up.isDown && this.player.body.touching.down){
-                this.player.setVelocityY(-380)
+                this.player.setVelocityY(-h*0.63)
             }else if(this.cursors.down.isDown){
                 this.player.setVelocityY(200)
             }
@@ -174,7 +174,7 @@ class GameScene extends Phaser.Scene{
             })
             controlA.on('pointerdown', ()=>{
                 if(this.player.body.touching.down){
-                    this.player.setVelocityY(-380)
+                    this.player.setVelocityY(-h*0.63)
                 }
                 controlA.setScale(0.6)
             })

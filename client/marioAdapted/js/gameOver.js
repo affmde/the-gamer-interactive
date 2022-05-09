@@ -8,7 +8,8 @@ class GameOver extends Phaser.Scene{
     }
 
     create(){
-        this.textOver = this.add.text(w/2, h/2-h*0.1, 'Game Over!!', {fontSize:32}).setOrigin(0.5);
+        this.levelText= this.add.text(w/2, h*0.2, 'Game Over!', {fontSize: 50}).setOrigin(0.5);
+        this.textOver = this.add.text(w/2, h/2-h*0.1, `Level: ${gameStats.level}`, {fontSize:32}).setOrigin(0.5);
         this.textPoints = this.add.text(w/2, h/2, `Your Score: `, {fontSize: 32}).setOrigin(0.5);
         this.textScore = this.add.text(w/2, h/2+h*0.1, gameStats.score, {fontSize: 40}).setOrigin(0.5);
         this.playAgainText = this.add.text(w/2, h/2+h*0.2, 'Play again', {fontSize: 32}).setOrigin(0.5);
