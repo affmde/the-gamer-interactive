@@ -80,11 +80,7 @@ class Level4 extends Phaser.Scene{
         }));
         this.boxes= this.physics.add.staticGroup();
         
-        //Create Live Hearts
-        for(let i = 0; i < gameStats.lives; i++){
-            const heart = this.add.image(20 + i*30, 20, 'heart')
-            heart.setScrollFactor(0);
-        }
+        
         //create platforms
         level4Platforms.forEach(platform=>{
             this.platforms.create(platform.x, platform.y, 'platform');
@@ -272,6 +268,8 @@ class Level4 extends Phaser.Scene{
             movablePlatform.body.setVelocityX(-100)
         }
 
+        this.playerLives()
+
         //Update texts
         this.scoreText.setText(`Your score: ${gameStats.score}`)
     }//end of Update method
@@ -291,6 +289,13 @@ class Level4 extends Phaser.Scene{
             this.player.anims.play('golem_idle', true)
         }else if(animation==='walk'){
             this.player.anims.play('golem_walk', true)
+        }
+    }
+
+    playerLives(){
+        for(let i = 0; i < gameStats.lives; i++){
+            const heart = this.add.image(20 + i*30, 20, 'heart')
+            heart.setScrollFactor(0)
         }
     }
 
