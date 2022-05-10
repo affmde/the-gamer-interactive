@@ -16,7 +16,7 @@ class StartScene extends Phaser.Scene{
         this.playAgainText.setInteractive();
         this.playAgainText.on('pointerdown', ()=>{
             this.scene.stop();
-            this.scene.start('GameScene')
+            this.scene.start('Level6')
         })
         device=this.deviceType();
     }

@@ -315,10 +315,9 @@ class Level6 extends Phaser.Scene{
             let bullet= this.physics.add.image(this.monster.x, this.monster.body.top+(Math.random()*100), 'bullet')
             bullet.setVelocityX(-200)
             bullet.body.allowGravity=false
+            bullet.setScale(0.8)
             this.physics.add.collider(bullet, this.player, (bul, player)=>{
-                if(player.body.touching.down){
-                    return
-                }else{
+                if(bul.body.touching.left){
                     this.checkGameOver()
                 }
             })
