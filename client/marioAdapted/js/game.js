@@ -6,6 +6,7 @@ config={
         width: window.innerWidth,
         height: window.innerHeight,
     },
+    activePointers:3,
     backgroundColor: "b9baff",
     physics: {
       default: 'arcade',
